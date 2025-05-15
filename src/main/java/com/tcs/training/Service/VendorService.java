@@ -1,6 +1,7 @@
 package com.tcs.training.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -8,7 +9,7 @@ import org.springframework.stereotype.Service;
 import com.tcs.training.Entity.Vendor;
 import com.tcs.training.Repository.ProductRepository;
 import com.tcs.training.Repository.VendorRepository;
-import com.tcs.training.dto.VendorProductDTO;
+
 
 @Service
 public class VendorService {
@@ -25,6 +26,11 @@ public class VendorService {
     }
     public List<Vendor> allVendors(){
     	return vrepo.findAll();
+    }
+    
+    public Vendor getVendorById(Long id) {
+    	Optional<Vendor>v=vrepo.findById(id);
+    	return v.get();
     }
 
 }

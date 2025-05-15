@@ -25,42 +25,27 @@ public class Purchase {
     @JoinColumn(name = "vendor_id")
     private Vendor vendor;
     
-    @ManyToOne
-    @JoinColumn(name = "product_id")
-    private Product product;
-    
-    
-    private Long quantity;
-    
-    @Column(name = "unit_price")
-    private Double unitPrice;
-    
     @Column(name = "total_amount" )
     private Double totalAmount;
     
     @Column(name = "purchase_date")
-    private LocalDateTime purchaseDate;
+    private LocalDate purchaseDate;
     
     @Column(name = "expected_delivery_date")
     private LocalDate expectedDeliveryDate;
     
-    @Enumerated(EnumType.STRING)
-    private PurchaseStatus status;
-    
     public Purchase() {}
 
-	public Purchase(Long id, Vendor vendor, Product product, Long quantity, Double unitPrice, Double totalAmount,
-			LocalDateTime purchaseDate, LocalDate expectedDeliveryDate, PurchaseStatus status) {
+	public Purchase(Long id, Vendor vendor,  Double totalAmount,
+			LocalDate purchaseDate, LocalDate expectedDeliveryDate) {
 		super();
 		this.id = id;
 		this.vendor = vendor;
-		this.product = product;
-		this.quantity = quantity;
-		this.unitPrice = unitPrice;
+		
 		this.totalAmount = totalAmount;
 		this.purchaseDate = purchaseDate;
 		this.expectedDeliveryDate = expectedDeliveryDate;
-		this.status = status;
+		
 	}
 
 	public Long getId() {
@@ -79,29 +64,7 @@ public class Purchase {
 		this.vendor = vendor;
 	}
 
-	public Product getProduct() {
-		return product;
-	}
-
-	public void setProduct(Product product) {
-		this.product = product;
-	}
-
-	public Long getQuantity() {
-		return quantity;
-	}
-
-	public void setQuantity(Long quantity) {
-		this.quantity = quantity;
-	}
-
-	public Double getUnitPrice() {
-		return unitPrice;
-	}
-
-	public void setUnitPrice(Double unitPrice) {
-		this.unitPrice = unitPrice;
-	}
+	
 
 	public Double getTotalAmount() {
 		return totalAmount;
@@ -111,11 +74,11 @@ public class Purchase {
 		this.totalAmount = totalAmount;
 	}
 
-	public LocalDateTime getPurchaseDate() {
+	public LocalDate getPurchaseDate() {
 		return purchaseDate;
 	}
 
-	public void setPurchaseDate(LocalDateTime purchaseDate) {
+	public void setPurchaseDate(LocalDate purchaseDate) {
 		this.purchaseDate = purchaseDate;
 	}
 
@@ -127,28 +90,13 @@ public class Purchase {
 		this.expectedDeliveryDate = expectedDeliveryDate;
 	}
 
-	public PurchaseStatus getStatus() {
-		return status;
-	}
-
-	public void setStatus(PurchaseStatus status) {
-		this.status = status;
-	}
-	
-	
-    
+	 
 	@Override
 	public String toString() {
-		return "Purchase [id=" + id + ", vendor=" + vendor + ", product=" + product + ", quantity=" + quantity
-				+ ", unitPrice=" + unitPrice + ", totalAmount=" + totalAmount + ", purchaseDate=" + purchaseDate
-				+ ", expectedDeliveryDate=" + expectedDeliveryDate + ", status=" + status + "]";
+		return "Purchase [id=" + id + ", vendor=" + vendor + ", totalAmount=" + totalAmount + ", purchaseDate=" + purchaseDate
+				+ ", expectedDeliveryDate=" + expectedDeliveryDate + "]";
 	}
 
 
-
-	public enum PurchaseStatus {
-	    PENDING, COMPLETED, CANCELLED
-	}
-    
 }
 
